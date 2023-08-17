@@ -2,8 +2,8 @@ import { addUserService } from "../services/user.service.js";
 import { validationResult } from 'express-validator';
 
 export const signUpController = async (req, res) => {
-    const errors = validationResult
-    if (!errors.isEmpty()) {
+    const results = validationResult(req)
+    if (results.errors.length !== 0) {
         return res.status(422).send(`Your signup failed`);
     }
     try {

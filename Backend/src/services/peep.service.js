@@ -20,7 +20,7 @@ export const getPeepService = async (id) => {
 
 export const getPeepsService = async () => {
     try {
-        return await Todo.find({});
+        return await Peep.find({});
     }
     catch (e) {
         throw e;
