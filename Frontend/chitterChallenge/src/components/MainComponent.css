@@ -1,0 +1,13 @@
+.peeps {
+    display: flex;
+    justify-content: center;
+    background-color: aliceblue;
+}
+
+.PeepCard {
+    border-radius: 12px;
+    border: aquamarine solid 3px;
+    width: 400px;
+    padding: 20px;
+    margin: 15px;
+}

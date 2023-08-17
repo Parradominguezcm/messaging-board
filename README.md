@@ -44,6 +44,29 @@ As a trainee
 So that I can avoid others posting messages on Chitter as me
 I want to log out of Chitter
 ```
+Domain model:
+|  object |  attribute | verb   |  return |
+|   ---   |     ---    |    --- |    ---  |
+| peep    |   date     | post   |         |   
+|         |   author   | edit   |         |   
+|         |   message  | delete |         |   
+|   ---   |     ---    |    --- |   ---   |
+| allPeeps| peeps[]    | view   |         |
+|   ---   |     ---    |    --- |   ---   |
+| user    | name       | login  |         |
+|         | id         | logout |         |
+
+
+| request | type       | routes    | data    | restrictions|
+|   ---   |     ---    |    ---    |   ---   |     ---     |
+| getPeeps| Get        | /allpeeps |  JSON   |             |
+| postPeep| post       | /peepit   |  JSON   |             |
+| editPeep| put        | /editpeep |  JSON   |             |
+| login   | post       | /login    |  JSON   |             |
+| logout  |            |           |         |             |
+
+
+
 
 Additional requirements:
 ------
