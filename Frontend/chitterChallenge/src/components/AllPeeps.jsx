@@ -1,9 +1,7 @@
-import { Header } from "./Header";
-import { Footer } from "./Footer";
 import { Main } from "./Main";
 import { useEffect, useState } from "react";
 import { getPeeps } from "../asyncFunctions/peepAPICall";
-import { PropTypes, propTypes } from 'prop-types';
+import { PropTypes } from 'prop-types';
 import PeepModel from "./utils/peep.model";
 
 function AllPeeps() {
@@ -31,15 +29,7 @@ function AllPeeps() {
 
     return (
         <>
-            <header>
-                < Header />
-            </header>
-
             {populateMain()}
-
-            <footer>
-                < Footer />
-            </footer>
         </>
     )
 }

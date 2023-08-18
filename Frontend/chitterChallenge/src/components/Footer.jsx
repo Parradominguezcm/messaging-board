@@ -1,10 +1,12 @@
-import "./Footer.css"
-export const Footer = () => {
+import "./css/Footer.css"
+import { Link } from "react-router-dom";
+
+export const Footer = ({ setLogin }) => {
     return (
         <div className="Footer">
-            <button className="button">Logout</button>
-            <button className="button">Sign Up!</button>
+            <p>Clara Parra|Digital Futures|August 2023</p>
         </div>
+
 
     )
 }

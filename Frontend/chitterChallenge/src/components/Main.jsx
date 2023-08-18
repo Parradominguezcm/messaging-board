@@ -1,4 +1,4 @@
-import "./MainComponent.css";
+import "./css/MainComponent.css";
 import PeepModel from "./utils/peep.model";
 import PropTypes from 'prop-types';
 
@@ -10,9 +10,9 @@ export const Main = ({ peep }) => {
     return (
         <div className="peeps">
             <div className="PeepCard">
-                <h2>Author: {peepAuthor}</h2>
-                <p className="peepContent">Posted: {peepMessage}</p>
-                <p className="date">{peepPublishDate}</p>
+                <strong>Author: {peepAuthor}</strong><br />
+                <strong className="peepContent">Posted:</strong><p>{peepMessage}</p>
+                <strong className="date"> Published on:</strong><p>{peepPublishDate}</p>
             </div>
         </div>
     );
