@@ -1,7 +1,7 @@
 
 import { Link } from 'react-router-dom';
 
-export const Authentication = ({ }) => {
+export const Authentication = () => {
     return (
         <div className="row">
             <div className="col-lg-6 offset-3">

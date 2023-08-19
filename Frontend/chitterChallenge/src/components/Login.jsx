@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { PropTypes } from 'prop-types';
 
 export const Login = ({ loggedIn, loggedInUser, setLoggedIn, setLoggedInUser }) => {
     const [userName, setUserName] = useState("")
@@ -23,11 +24,11 @@ export const Login = ({ loggedIn, loggedInUser, setLoggedIn, setLoggedInUser }) 
                 userPassword
             }),
         });
-        const loggedInUser = await response.json()
+        const userRes = await response.json()
 
-        if (loggedInUser.user.length > 0) {
+        if (userRes.user.length > 0) {
             setLoggedIn(true)
-            setLoggedInUser(loggedInUser.user[0])
+            setLoggedInUser(userRes.user[0])
         } else {
             setLoggedIn(false)
             setshowValidationError(true)
@@ -81,4 +82,19 @@ export const Login = ({ loggedIn, loggedInUser, setLoggedIn, setLoggedInUser }) 
             <p><Link to="/makeapeep" className="link">make a peep</Link> or <Link to="/" className="link"> Back to the main page! </Link></p>
         </div >
     )
+}
+
+Login.propTypes = {
+    'loggedIn': PropTypes.bool,
+    'setLoggedIn': PropTypes.func,
+    'setLoggedInUser': PropTypes.func,
+    'loggedInUser': PropTypes.exact({
+        "_id": PropTypes.string,
+        "userName": PropTypes.string,
+        "userFirstName": PropTypes.string,
+        "userLastName": PropTypes.string,
+        "userEmail": PropTypes.string,
+        "userPassword": PropTypes.string,
+        __v: PropTypes.number,
+    })
 }

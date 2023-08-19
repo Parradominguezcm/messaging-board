@@ -49,4 +49,5 @@ AllPeeps.propTypes = {
         }),
     ])
 };
+
 export default AllPeeps;

@@ -1,7 +1,10 @@
 import express from 'express';
 import { addPeepController } from '../controllers/addPeep.controller.js'
-export const makeAPeepRouter = express.Router();
+import { body } from 'express-validator'
 
-makeAPeepRouter.post('/', (req, res) => {
-    res.send(addPeepController);
-});
+export const makeAPeepRouter = express.Router();
+makeAPeepRouter.post('/', [
+    body("peepMessage").exists().escape(),
+    body("peepDate").exists().escape(),
+    body("peepAuthor").exists().escape(),
+], addPeepController);

@@ -8,9 +8,7 @@ const peepSchema = new mongoose.Schema({
         required: true
     },
     peepAuthor: { type: String, required: true },
-    id: { type: Number, required: true },
-
-
+    id: { type: Number },
 });
 
 const Peep = mongoose.model(`Peep`, peepSchema);

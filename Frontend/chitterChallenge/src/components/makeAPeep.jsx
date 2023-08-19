@@ -1,12 +1,12 @@
 import { useState } from "react"
 import { Link } from "react-router-dom";
+import { PropTypes } from "prop-types"
 
-export const MakeAPeep = ({ loggedInUser }) => {
+const MakeAPeep = ({ loggedInUser }) => {
     const [peepMessage, setPeepMessage] = useState()
     const [peepSubmit, setPeepSubmit] = useState(false)
 
     const handleChange = (stateFunction) => (e) => {
-        setshowValidationError(false)
         stateFunction(e.target.value)
     }
 
@@ -24,7 +24,7 @@ export const MakeAPeep = ({ loggedInUser }) => {
             }),
         });
 
-        if (response.json().length > 0)
+        if (response.ok)
             setPeepSubmit(true)
         else setPeepSubmit(false)
     }
@@ -33,21 +33,34 @@ export const MakeAPeep = ({ loggedInUser }) => {
     return (
         <>
             <div className="d-flex flex-column align-items-center">
-                <form action="" className="form-group mt-3 text-start pt-5">
+                {peepSubmit && <h1>You have created a peep!</h1>}
+                {!peepSubmit && <form action="" className="form-group mt-3 text-start pt-5">
                     <>
                         <div className="form-header">
                             <h2>Make a peep!</h2>
-                            <p className="text-muted mb-3"><small>What's your message?</small> </p>
+                            <p className="text-muted mb-3"><small>What&apos;s your message?</small> </p>
                         </div>
                         <textarea onChange={handleChange(setPeepMessage)}>{peepMessage}</textarea>
                         <button onClick={peepSubmitHandler}>Submit!</button>
                     </>
-
-
-                    <Link to="/" className="link"> Back to the main page! </Link>
-                </form>
+                </form>}
+                <Link to="/" className="link"> Back to the main page! </Link>
             </div>
 
         </>
     )
 }
+MakeAPeep.propTypes = {
+    loggedInUser: PropTypes.exact({
+        "_id": PropTypes.string,
+        "userName": PropTypes.string,
+        "userFirstName": PropTypes.string,
+        "userLastName": PropTypes.string,
+        "userEmail": PropTypes.string,
+        "userPassword": PropTypes.string,
+        __v: PropTypes.number,
+    }),
+    peepSubmit: PropTypes.bool,
+    userName: PropTypes.string
+}
+export default MakeAPeep;

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 
 export const Main = ({ peep }) => {
-    const { peepMessage, peepDate, peepAuthor, _id } = peep;
+    const { peepMessage, peepDate, peepAuthor, } = peep;
     const peepPublishDate = new Date(peepDate).toUTCString();
 
     return (

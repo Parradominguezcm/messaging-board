@@ -3,9 +3,9 @@ import { addPeepService } from '../services/peep.service.js';
 
 
 export const addPeepController = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(422).send(`Adding new Peep failed`);
+    const results = validationResult(req);
+    if (results.errors.length !== 0) {
+        res.status(422).send(`Adding new Peep failed`);
     }
     try {
         const peep = await addPeepService(req.body);

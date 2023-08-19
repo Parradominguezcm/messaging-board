@@ -1,7 +1,8 @@
 import "./css/Header.css"
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
-export const Header = () => {
+export const Header = ({ setLogin }) => {
     return (
         <div className="Header">
             <ul>
@@ -13,4 +14,8 @@ export const Header = () => {
             <button className="button" onClick={() => setLogin(false)}>Logout</button>
         </div>
     )
+}
+
+Header.propTypes = {
+    setLogin: PropTypes.func,
 }

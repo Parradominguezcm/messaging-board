@@ -9,18 +9,9 @@ export const addPeepService = async (newPeepData) => {
     }
 }
 
-export const getPeepService = async (id) => {
-    try {
-        return await Peep.findById(id);
-    }
-    catch (e) {
-        throw e;
-    }
-}
-
 export const getPeepsService = async () => {
     try {
-        return await Peep.find({});
+        return await Peep.find({}).sort({ peepDate: 'desc' });
     }
     catch (e) {
         throw e;

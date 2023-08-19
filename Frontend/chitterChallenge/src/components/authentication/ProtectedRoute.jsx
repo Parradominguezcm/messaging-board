@@ -1,3 +1,5 @@
+import { PropTypes } from 'prop-types'
+
 export const ProtectedRoute = ({ isLoggedIn, loggedInComponent, loggedOutComponent }) => {
     return (
         <>
@@ -6,3 +8,8 @@ export const ProtectedRoute = ({ isLoggedIn, loggedInComponent, loggedOutCompone
     )
 }
 
+ProtectedRoute.propTypes = {
+    isLoggedIn: PropTypes.bool,
+    loggedInComponent: PropTypes.object,
+    loggedOutComponent: PropTypes.object,
+}

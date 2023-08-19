@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { PropTypes } from 'prop-types';
 
 export const SignUp = () => {
     const [userFirstName, setUserFirstName] = useState()
@@ -121,4 +122,23 @@ export const SignUp = () => {
                 </form>)}
         </div>
     )
+}
+
+SignUp.propTypes = {
+    signup: PropTypes.oneOfType([
+        PropTypes.exact({
+            users: PropTypes.arrayOf(
+                PropTypes.shape({
+                    "_id": PropTypes.string,
+                    "userName": PropTypes.string,
+                    "userFirstName": PropTypes.string,
+                    "userLastName": PropTypes.string,
+                    "userEmail": PropTypes.string,
+                    "userPassword": PropTypes.string,
+                    __v: PropTypes.number,
+                })
+            ),
+            error: PropTypes.string
+        }),
+    ])
 }
