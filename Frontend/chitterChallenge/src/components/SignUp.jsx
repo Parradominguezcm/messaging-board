@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { PropTypes } from 'prop-types';
+import { signupAPICall } from "../asyncFunctions/signupAPICall";
 
 export const SignUp = () => {
     const [userFirstName, setUserFirstName] = useState()
@@ -26,23 +27,9 @@ export const SignUp = () => {
         setUserPassword(e.target.value)
     };
 
-
     const signupSubmitHandler = async e => {
         e.preventDefault();
-        const response = await fetch(import.meta.env.VITE_PEEPSURL + "/signup", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify({
-                userFirstName,
-                userLastName,
-                userName,
-                userEmail,
-                userPassword
-            }),
-        });
-
+        const response = signupAPICall(userFirstName, userLastName, userName, userEmail, userPassword);
         setSignupSuccessful(response.ok)
     }
 

@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className='Container'>
-      <Header setLogin={setLoggedIn} />
+      <Header loggedIn={loggedIn} setLogin={setLoggedIn} />
 
       <Routes>
         <Route path="/" element={<AllPeeps />} />

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types"
+import { createPeepAPICall } from "../asyncFunctions/createPeepAPICall";
 
 const MakeAPeep = ({ loggedInUser }) => {
     const [peepMessage, setPeepMessage] = useState()
@@ -12,23 +13,10 @@ const MakeAPeep = ({ loggedInUser }) => {
 
     const peepSubmitHandler = async e => {
         e.preventDefault();
-        const response = await fetch(import.meta.env.VITE_PEEPSURL + "/makePeep", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                peepMessage,
-                peepDate: new Date(),
-                peepAuthor: loggedInUser.userName,
-            }),
-        });
+        const response = await createPeepAPICall(loggedInUser.userName, peepMessage)
 
-        if (response.ok)
-            setPeepSubmit(true)
-        else setPeepSubmit(false)
+        setPeepSubmit(response.ok)
     }
-
 
     return (
         <>
@@ -41,7 +29,8 @@ const MakeAPeep = ({ loggedInUser }) => {
                             <p className="text-muted mb-3"><small>What&apos;s your message?</small> </p>
                         </div>
                         <textarea onChange={handleChange(setPeepMessage)}>{peepMessage}</textarea>
-                        <button onClick={peepSubmitHandler}>Submit!</button>
+                        <br />
+                        <button className="button" onClick={peepSubmitHandler}>Submit!</button>
                     </>
                 </form>}
                 <Link to="/" className="link"> Back to the main page! </Link>

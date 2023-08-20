@@ -4,6 +4,8 @@
     text-align: center;
     max-width: 1080px;
     margin: 0 auto;
+    background-color: aliceblue;
+
 }
 
 .link {
@@ -25,7 +27,7 @@
 }
 
 /* Responsive styles */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1080px) {
 
     /* Adjust styles for smaller screens */
     header,

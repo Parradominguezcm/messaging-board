@@ -1,35 +1,28 @@
-import { Main } from "./Main";
+import { Peep } from "./Peep";
 import { useEffect, useState } from "react";
 import { getPeeps } from "../asyncFunctions/peepAPICall";
 import { PropTypes } from 'prop-types';
-import PeepModel from "./utils/peep.model";
+import PeepModel from "./models/peep.model";
 
 function AllPeeps() {
     const [allPeeps, setAllPeeps] = useState()
+
     useEffect(() => {
         const fetchData = async () => {
             const peep = await getPeeps()
             setAllPeeps(peep)
         }
+
         fetchData()
     }, [])
 
-    const populateMain = () => {
-        if (!allPeeps) return null
-
-        const { peeps } = allPeeps;
-        if (peeps?.length > 0) {
-            const displayPeeps = peeps.map(currentPeep => {
-                const peep = new PeepModel(currentPeep.peepMessage, currentPeep.peepDate, currentPeep.peepAuthor, currentPeep._id);
-                return <Main peep={peep} key={peep._id} />
-            });
-            return displayPeeps;
-        }
-    }
-
     return (
         <>
-            {populateMain()}
+            {allPeeps && allPeeps.peeps?.length > 0 && (
+                allPeeps.peeps.map(currentPeep => {
+                    const peep = new PeepModel(currentPeep.peepMessage, currentPeep.peepDate, currentPeep.peepAuthor, currentPeep._id)
+                    return <Peep peep={peep} key={peep._id} />
+                }))}
         </>
     )
 }
